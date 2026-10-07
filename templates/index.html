@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Analyzer</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: #111827;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-text {
+            color: #d1d5db;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 70px auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            color: #111827;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #111827;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+        }
+
+        input[type="file"] {
+            background: #f9fafb;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        select {
+            cursor: pointer;
+            color: #374151;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 45px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background: white;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+            color: #2563eb;
+        }
+
+        .feature p {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 18px 25px;
+            }
+
+            .nav-text {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .card {
+                padding: 25px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🤖 AI Resume Analyzer
+        </div>
+
+        <div class="nav-text">
+            Smart Resume Screening System
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <div class="hero">
+
+            <h1>
+                Analyze Your Resume with
+                <span>AI</span>
+            </h1>
+
+            <p>
+                Upload multiple resumes and compare candidate skills
+                with job requirements. Get match scores and
+                candidate information instantly.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Resume Analysis</h2>
+
+            <form action="/analyze" method="POST" enctype="multipart/form-data">
+
+                <div class="form-group">
+
+                    <label>Select Resumes (PDF)</label>
+
+                    <input
+                        type="file"
+                        name="resumes"
+                        accept=".pdf"
+                        multiple
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Job Role</label>
+
+                    <select name="job_role" required>
+
+                        <option value="" disabled selected>
+                            Select a Job Role
+                        </option>
+
+                        <option value="Python Developer">
+                            Python Developer
+                        </option>
+
+                        <option value="Web Developer">
+                            Web Developer
+                        </option>
+
+                        <option value="Java Developer">
+                            Java Developer
+                        </option>
+
+                        <option value="Data Analyst">
+                            Data Analyst
+                        </option>
+
+                        <option value="Software Engineer">
+                            Software Engineer
+                        </option>
+
+                        <option value="Data Scientist">
+                            Data Scientist
+                        </option>
+
+                        <option value="Machine Learning Engineer">
+                            Machine Learning Engineer
+                        </option>
+
+                        <option value="Frontend Developer">
+                            Frontend Developer
+                        </option>
+
+                        <option value="Backend Developer">
+                            Backend Developer
+                        </option>
+
+                        <option value="Full Stack Developer">
+                            Full Stack Developer
+                        </option>
+
+                        <option value="AI Engineer">
+                            AI Engineer
+                        </option>
+
+                        <option value="DevOps Engineer">
+                            DevOps Engineer
+                        </option>
+
+                        <option value="Database Administrator">
+                            Database Administrator
+                        </option>
+
+                        <option value="Cybersecurity Analyst">
+                            Cybersecurity Analyst
+                        </option>
+
+                        <option value="Cloud Engineer">
+                            Cloud Engineer
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="submit">
+                    Analyze Resumes
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature">
+
+                <h3>📄 Multiple Resumes</h3>
+
+                <p>
+                    Upload and analyze multiple candidate
+                    resumes at the same time.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>🎯 Match Score</h3>
+
+                <p>
+                    Compare candidate skills with the
+                    requirements of the selected job.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>⚡ Instant Analysis</h3>
+
+                <p>
+                    Get skills, match scores and candidate
+                    information instantly.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        AI Resume Analyzer & Job Match System
+
+    </footer>
+
+</body>
+
+</html>

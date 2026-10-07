@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Resume Analysis Result</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .navbar {
+            height: 64px;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 55px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        .nav-right {
+            color: #d1d5db;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 45px auto;
+            padding: 0 25px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            color: #64748b;
+        }
+
+        .score-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            margin-bottom: 25px;
+        }
+
+        .score {
+            font-size: 55px;
+            font-weight: bold;
+            color: #2563eb;
+            margin: 10px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 9px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .suitable {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .not-suitable {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .job {
+            color: #64748b;
+            margin-top: 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+        }
+
+        .card h2 {
+            font-size: 19px;
+            margin-top: 0;
+            margin-bottom: 18px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .skill {
+            background: #e8f0ff;
+            color: #2563eb;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .missing {
+            background: #fff1f2;
+            color: #dc2626;
+        }
+
+        .required {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .recommendations {
+            margin-top: 20px;
+        }
+
+        .recommendation {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 13px 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            color: #334155;
+        }
+
+        .candidate-info {
+            text-align: center;
+            color: #475569;
+            margin-bottom: 25px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            background: #2563eb;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 700px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .score {
+                font-size: 45px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <div class="logo">
+            🤖 AI Resume <span>Analyzer</span>
+        </div>
+
+        <div class="nav-right">
+            Candidate Result
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="heading">
+
+            <h1>
+                Resume Analysis Result
+            </h1>
+
+            <p>
+                Here is your compatibility analysis for the selected job role.
+            </p>
+
+        </div>
+
+
+        <div class="candidate-info">
+
+            <strong>
+                {{ candidate_name }}
+            </strong>
+
+            <br>
+
+            {{ email }}
+
+            <br>
+
+            Target Role:
+            <strong>{{ job_role }}</strong>
+
+        </div>
+
+
+        <div class="score-card">
+
+            <div>
+                Your Match Score
+            </div>
+
+            <div class="score">
+                {{ match_score }}%
+            </div>
+
+
+            {% if suitability == "Suitable" %}
+
+                <div class="status suitable">
+                    ✓ Suitable for this Role
+                </div>
+
+            {% else %}
+
+                <div class="status not-suitable">
+                    ✗ Not Suitable Yet
+                </div>
+
+            {% endif %}
+
+            <div class="job">
+                Based on the skills detected in your resume
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+
+            <div class="card">
+
+                <h2>
+                    🧠 Skills Found
+                </h2>
+
+                <div class="skills">
+
+                    {% for skill in found_skills %}
+
+                        <span class="skill">
+                            {{ skill }}
+                        </span>
+
+                    {% endfor %}
+
+                    {% if not found_skills %}
+
+                        <span>
+                            No matching skills detected.
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    🎯 Required Skills
+                </h2>
+
+                <div class="skills">
+
+                    {% for skill in required_skills %}
+
+                        <span class="skill required">
+                            {{ skill }}
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    ⚠️ Missing Skills
+                </h2>
+
+                <div class="skills">
+
+                    {% for skill in missing_skills %}
+
+                        <span class="skill missing">
+                            {{ skill }}
+                        </span>
+
+                    {% endfor %}
+
+                    {% if not missing_skills %}
+
+                        <span class="skill">
+                            ✓ No missing skills
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div class="card recommendations">
+
+                <h2>
+                    💡 Recommendations
+                </h2>
+
+                {% for recommendation in recommendations %}
+
+                    <div class="recommendation">
+                        {{ recommendation }}
+                    </div>
+
+                {% endfor %}
+
+                {% if not recommendations %}
+
+                    <div class="recommendation">
+                        Great! Your resume covers all the required skills for this role.
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+
+        <div class="buttons">
+
+            <a href="/candidate" class="button">
+                ← Analyze Another Resume
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

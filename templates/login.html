@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Analyzer - Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .navbar {
+            height: 64px;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 55px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        .main {
+            min-height: calc(100vh - 64px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 850px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e8f0ff;
+            color: #2563eb;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin: 5px 0 12px;
+        }
+
+        h1 span {
+            color: #2563eb;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            margin: 5px 0 10px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+            min-height: 45px;
+        }
+
+        .button {
+            display: block;
+            text-decoration: none;
+            background: #2563eb;
+            color: white;
+            padding: 13px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .candidate {
+            background: #0f766e;
+        }
+
+        .candidate:hover {
+            background: #0d615a;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        @media (max-width: 700px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            🤖 AI Resume <span>Analyzer</span>
+        </div>
+    </div>
+
+
+    <div class="main">
+
+        <div class="container">
+
+            <div class="badge">
+                ✨ Smart Resume Screening System
+            </div>
+
+            <h1>
+                Welcome to <span>AI Resume Analyzer</span>
+            </h1>
+
+            <p class="subtitle">
+                Choose how you want to use the system
+            </p>
+
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="icon">
+                        👨‍💼
+                    </div>
+
+                    <h2>
+                        Admin / HR
+                    </h2>
+
+                    <p>
+                        Upload multiple candidate resumes,
+                        analyze job requirements and rank candidates
+                        based on their match scores.
+                    </p>
+
+                    <a href="/admin-login" class="button">
+                        Admin / HR Login
+                    </a>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="icon">
+                        👤
+                    </div>
+
+                    <h2>
+                        Candidate
+                    </h2>
+
+                    <p>
+                        Upload your resume, select your desired job
+                        role and check your compatibility with the job.
+                    </p>
+
+                    <a href="/candidate" class="button candidate">
+                        Continue as Candidate
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer">
+                AI Resume Analyzer • Smart Career Screening System
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
